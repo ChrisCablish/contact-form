@@ -1,0 +1,25 @@
+// styles/mixins.scss
+@import "./variables.scss";
+
+@mixin text-box-styles {
+  padding: $spacing-150 $spacing-300;
+  border-radius: 8px;
+  border: 1px solid $grey500;
+
+  &:hover {
+    border-color: $green600;
+  }
+
+  &:focus {
+    border-color: $green600;
+    outline: none;
+  }
+
+  &:active {
+    border-color: $green600;
+  }
+
+  &.error {
+    border-color: $redError;
+  }
+}

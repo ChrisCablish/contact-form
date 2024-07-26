@@ -20,9 +20,8 @@ const ContactForm: React.FC = () => {
                 </label>
                 <input
                   type="text"
-                  className="form-control"
+                  className="form-control text-box"
                   id="firstName"
-                  placeholder="First Name"
                 />
               </div>
               <div className="col-sm-6">
@@ -31,9 +30,8 @@ const ContactForm: React.FC = () => {
                 </label>
                 <input
                   type="text"
-                  className="form-control"
+                  className="form-control text-box"
                   id="lastName"
-                  placeholder="Last Name"
                 />
               </div>
             </div>
@@ -44,24 +42,21 @@ const ContactForm: React.FC = () => {
             <label htmlFor="email" className="form-label">
               Email address
             </label>
-            <input
-              type="email"
-              className="form-control"
-              id="email"
-              placeholder="name@example.com"
-            />
+            <input type="email" className="form-control text-box" id="email" />
           </div>
         </div>
         <div className="row mb-3">
           <div className="col">
+            <label className="form-label">Query Type</label>
             <div className="row">
               <div className="col-sm-6">
                 <div className="form-check">
                   <input
                     className="form-check-input"
-                    type="checkbox"
-                    value=""
+                    type="radio"
+                    name="queryType"
                     id="generalEnquiry"
+                    value="generalEnquiry"
                   />
                   <label className="form-check-label" htmlFor="generalEnquiry">
                     General Enquiry
@@ -72,9 +67,10 @@ const ContactForm: React.FC = () => {
                 <div className="form-check">
                   <input
                     className="form-check-input"
-                    type="checkbox"
-                    value=""
+                    type="radio"
+                    name="queryType"
                     id="supportRequest"
+                    value="supportRequest"
                   />
                   <label className="form-check-label" htmlFor="supportRequest">
                     Support Request
@@ -89,7 +85,11 @@ const ContactForm: React.FC = () => {
             <label htmlFor="message" className="form-label">
               Message
             </label>
-            <textarea className="form-control" id="message" rows={4}></textarea>
+            <textarea
+              className="form-control text-box"
+              id="message"
+              rows={4}
+            ></textarea>
           </div>
         </div>
         <div className="row mb-3">
