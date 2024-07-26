@@ -50,7 +50,7 @@ const ContactForm: React.FC = () => {
             <label className="form-label">Query Type</label>
             <div className="row">
               <div className="col-sm-6">
-                <div className="form-check">
+                <div className="form-check radio-button">
                   <input
                     className="form-check-input"
                     type="radio"
@@ -64,7 +64,7 @@ const ContactForm: React.FC = () => {
                 </div>
               </div>
               <div className="col-sm-6">
-                <div className="form-check">
+                <div className="form-check radio-button">
                   <input
                     className="form-check-input"
                     type="radio"

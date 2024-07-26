@@ -23,3 +23,21 @@
     border-color: $redError;
   }
 }
+
+@mixin radio-button-styles {
+  padding: $spacing-150 $spacing-300;
+  border: 1px solid $grey500;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+
+  &:hover {
+    border-color: $green600;
+  }
+
+  &:active {
+    background-color: $green200;
+    border-color: $green600;
+  }
+}
