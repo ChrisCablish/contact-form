@@ -13,6 +13,16 @@ const ContactForm: React.FC = () => {
     email: "",
     message: "",
   });
+
+  type RadioValues = {
+    [key: string]: boolean;
+  };
+
+  const [radioValues, setRadioValues] = useState<RadioValues>({
+    generalEnquiry: true,
+    supportRequest: false,
+  });
+
   const [focusedInput, setFocusedInput] = useState<string | null>(null);
 
   const handleSubmit = async (event: any) => {
@@ -23,11 +33,19 @@ const ContactForm: React.FC = () => {
   const handleChange = (
     event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
   ) => {
-    const { id, value } = event.target;
-    setInputValues((prevState) => ({
-      ...prevState,
-      [id]: value,
-    }));
+    const { id, value, type } = event.target;
+
+    if (type === "radio") {
+      setRadioValues({
+        generalEnquiry: id === "generalEnquiry",
+        supportRequest: id === "supportRequest",
+      });
+    } else {
+      setInputValues((prevState) => ({
+        ...prevState,
+        [id]: value,
+      }));
+    }
   };
 
   const handleFocus = (
@@ -43,6 +61,12 @@ const ContactForm: React.FC = () => {
   const getInputClass = (id: string) => {
     return classNames("form-control text-box", {
       filled: inputValues[id] && focusedInput !== id,
+    });
+  };
+
+  const getRadioClass = (id: string) => {
+    return classNames("form-check radio-button", {
+      checked: radioValues[id],
     });
   };
 
@@ -105,13 +129,15 @@ const ContactForm: React.FC = () => {
             <label className="form-label">Query Type</label>
             <div className="row">
               <div className="col-sm-6">
-                <div className="form-check radio-button">
+                <div className={getRadioClass("generalEnquiry")}>
                   <input
                     className="form-check-input"
                     type="radio"
                     name="queryType"
                     id="generalEnquiry"
                     value="generalEnquiry"
+                    defaultChecked={true}
+                    onChange={handleChange}
                   />
                   <label className="form-check-label" htmlFor="generalEnquiry">
                     General Enquiry
@@ -119,13 +145,14 @@ const ContactForm: React.FC = () => {
                 </div>
               </div>
               <div className="col-sm-6">
-                <div className="form-check radio-button">
+                <div className={getRadioClass("supportRequest")}>
                   <input
                     className="form-check-input"
                     type="radio"
                     name="queryType"
                     id="supportRequest"
                     value="supportRequest"
+                    onChange={handleChange}
                   />
                   <label className="form-check-label" htmlFor="supportRequest">
                     Support Request

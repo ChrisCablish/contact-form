@@ -19,3 +19,7 @@ body {
 .radio-button {
   @include radio-button-styles;
 }
+
+.checked {
+  background-color: $green200;
+}
