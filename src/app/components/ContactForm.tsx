@@ -1,10 +1,49 @@
-import React from "react";
-import Head from "next/head";
+import React, { useState } from "react";
+import classNames from "classnames";
 import styles from "../styles/Contact.module.scss";
 
 const ContactForm: React.FC = () => {
+  type InputValues = {
+    [key: string]: string;
+  };
+
+  const [inputValues, setInputValues] = useState<InputValues>({
+    firstName: "",
+    lastName: "",
+    email: "",
+    message: "",
+  });
+  const [focusedInput, setFocusedInput] = useState<string | null>(null);
+
   const handleSubmit = async (event: any) => {
     event.preventDefault();
+    // handle form submission logic here
+  };
+
+  const handleChange = (
+    event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+  ) => {
+    const { id, value } = event.target;
+    setInputValues((prevState) => ({
+      ...prevState,
+      [id]: value,
+    }));
+  };
+
+  const handleFocus = (
+    event: React.FocusEvent<HTMLInputElement | HTMLTextAreaElement>
+  ) => {
+    setFocusedInput(event.target.id);
+  };
+
+  const handleBlur = () => {
+    setFocusedInput(null);
+  };
+
+  const getInputClass = (id: string) => {
+    return classNames("form-control text-box", {
+      filled: inputValues[id] && focusedInput !== id,
+    });
   };
 
   return (
@@ -20,8 +59,12 @@ const ContactForm: React.FC = () => {
                 </label>
                 <input
                   type="text"
-                  className="form-control text-box"
+                  className={getInputClass("firstName")}
                   id="firstName"
+                  value={inputValues.firstName}
+                  onChange={handleChange}
+                  onFocus={handleFocus}
+                  onBlur={handleBlur}
                 />
               </div>
               <div className="col-sm-6">
@@ -30,8 +73,12 @@ const ContactForm: React.FC = () => {
                 </label>
                 <input
                   type="text"
-                  className="form-control text-box"
+                  className={getInputClass("lastName")}
                   id="lastName"
+                  value={inputValues.lastName}
+                  onChange={handleChange}
+                  onFocus={handleFocus}
+                  onBlur={handleBlur}
                 />
               </div>
             </div>
@@ -42,7 +89,15 @@ const ContactForm: React.FC = () => {
             <label htmlFor="email" className="form-label">
               Email address
             </label>
-            <input type="email" className="form-control text-box" id="email" />
+            <input
+              type="email"
+              className={getInputClass("email")}
+              id="email"
+              value={inputValues.email}
+              onChange={handleChange}
+              onFocus={handleFocus}
+              onBlur={handleBlur}
+            />
           </div>
         </div>
         <div className="row mb-3">
@@ -86,9 +141,13 @@ const ContactForm: React.FC = () => {
               Message
             </label>
             <textarea
-              className="form-control text-box"
+              className={getInputClass("message")}
               id="message"
               rows={4}
+              value={inputValues.message}
+              onChange={handleChange}
+              onFocus={handleFocus}
+              onBlur={handleBlur}
             ></textarea>
           </div>
         </div>

@@ -22,6 +22,10 @@
   &.error {
     border-color: $redError;
   }
+
+  &.filled {
+    border-color: $grey500;
+  }
 }
 
 @mixin radio-button-styles {
