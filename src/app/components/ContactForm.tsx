@@ -182,7 +182,7 @@ const ContactForm: React.FC = () => {
           <div className="col">
             <div className="form-check">
               <input
-                className="form-check-input"
+                className="form-check-input checkbox"
                 type="checkbox"
                 value=""
                 id="consent"
