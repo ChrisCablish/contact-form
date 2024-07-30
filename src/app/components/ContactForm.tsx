@@ -71,8 +71,8 @@ const ContactForm: React.FC = () => {
   };
 
   return (
-    <div className="container mt-5">
-      <h2>Contact us</h2>
+    <div className="container-fluid entireForm">
+      <h2>Contact Us</h2>
       <form onSubmit={handleSubmit}>
         <div className="row mb-3">
           <div className="col">
@@ -131,7 +131,7 @@ const ContactForm: React.FC = () => {
               <div className="col-sm-6">
                 <div className={getRadioClass("generalEnquiry")}>
                   <input
-                    className="form-check-input"
+                    className="form-check-input radio"
                     type="radio"
                     name="queryType"
                     id="generalEnquiry"
@@ -147,7 +147,7 @@ const ContactForm: React.FC = () => {
               <div className="col-sm-6">
                 <div className={getRadioClass("supportRequest")}>
                   <input
-                    className="form-check-input"
+                    className="form-check-input radio"
                     type="radio"
                     name="queryType"
                     id="supportRequest"
@@ -187,7 +187,7 @@ const ContactForm: React.FC = () => {
                 value=""
                 id="consent"
               />
-              <label className="form-check-label" htmlFor="consent">
+              <label className="form-check-label consent" htmlFor="consent">
                 I consent to being contacted by the team
               </label>
             </div>

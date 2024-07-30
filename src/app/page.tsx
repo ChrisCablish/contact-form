@@ -12,7 +12,7 @@ export default function Home() {
           url('https://fonts.googleapis.com/css2?family=Karla:ital,wght@0,200..800;1,200..800&family=Roboto:wght@400;700&display=swap');
         </style>
       </Head>
-      <main>
+      <main className="page">
         <ContactForm />
       </main>
     </>

@@ -37,6 +37,11 @@
   gap: 12px;
   accent-color: $green600;
 
+  .radio {
+    height: 24px;
+    width: 24px;
+  }
+
   &:hover {
     border-color: $green600;
   }
