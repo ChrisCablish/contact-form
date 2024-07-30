@@ -31,3 +31,22 @@ body {
 textarea {
   font-family: Karla, sans-serif;
 }
+
+button {
+  background-color: $green600;
+  color: $white;
+  border: 1px solid $green600;
+  padding: $spacing-200 $spacing-400;
+  border-radius: 8px;
+  cursor: pointer;
+
+  &:hover {
+    border-radius: 8px;
+    background: linear-gradient(
+        0deg,
+        rgba(0, 0, 0, 0.5) 0%,
+        rgba(0, 0, 0, 0.5) 100%
+      ),
+      $green600;
+  }
+}
