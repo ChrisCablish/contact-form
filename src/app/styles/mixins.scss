@@ -42,6 +42,10 @@
     width: 24px;
   }
 
+  label {
+    margin-bottom: 0px;
+  }
+
   &:hover {
     border-color: $green600;
   }

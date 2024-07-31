@@ -59,13 +59,13 @@ const ContactForm: React.FC = () => {
   };
 
   const getInputClass = (id: string) => {
-    return classNames("form-control text-box", {
+    return classNames("form-control text-box spacing-300", {
       filled: inputValues[id] && focusedInput !== id,
     });
   };
 
   const getRadioClass = (id: string) => {
-    return classNames("form-check radio-button", {
+    return classNames("form-check radio-button generalEnquiry", {
       checked: radioValues[id],
     });
   };
@@ -180,7 +180,7 @@ const ContactForm: React.FC = () => {
         </div>
         <div className="row mb-3">
           <div className="col">
-            <div className="form-check">
+            <div className="form-check contact-consent-section">
               <input
                 className="form-check-input checkbox"
                 type="checkbox"
