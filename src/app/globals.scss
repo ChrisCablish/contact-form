@@ -18,6 +18,7 @@ body {
   background-color: white;
   padding: $spacing-500;
   width: 375px;
+  border-radius: $spacing-200;
 }
 
 .text-box {
@@ -58,11 +59,15 @@ textarea {
 
 button {
   background-color: $green600;
-  color: $white;
+  color: white;
   border: 1px solid $green600;
   padding: $spacing-200 $spacing-400;
   border-radius: 8px;
   cursor: pointer;
+  font-family: karla, sans-serif;
+  font-weight: 700;
+  line-height: 150%;
+  font-size: 18px;
 
   &:hover {
     border-radius: 8px;
@@ -110,11 +115,20 @@ h2 {
   }
 }
 
+.asterisk {
+  color: $green600;
+  font-weight: 700;
+}
+
 .consent {
   font-size: var(--font-size-body-sm, 16px);
   font-style: normal;
   font-weight: 400;
   line-height: 150%; /* 24px */
+}
+
+.error {
+  border: 1px solid $redError;
 }
 
 @media screen and (min-width: $tablet) {

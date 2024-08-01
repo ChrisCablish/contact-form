@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import classNames from "classnames";
 import styles from "../styles/Contact.module.scss";
+import RequiredAsterisk from "./required";
 
 const ContactForm: React.FC = () => {
   type InputValues = {
@@ -23,10 +24,57 @@ const ContactForm: React.FC = () => {
     supportRequest: false,
   });
 
+  const [errors, setErrors] = useState<InputValues>({
+    firstName: "",
+    lastName: "",
+    email: "",
+    message: "",
+  });
+
+  const validate = (): boolean => {
+    let valid = true;
+    const newErrors: InputValues = {
+      firstName: "",
+      lastName: "",
+      email: "",
+      message: "",
+    };
+
+    if (!inputValues.firstName) {
+      newErrors.firstName = "First name is required";
+      valid = false;
+    }
+
+    if (!inputValues.lastName) {
+      newErrors.lastName = "Last name is required";
+      valid = false;
+    }
+
+    if (!inputValues.email) {
+      newErrors.email = "Email is required";
+      valid = false;
+    } else if (!/\S+@\S+\.\S+/.test(inputValues.email)) {
+      newErrors.email = "Email is invalid";
+      valid = false;
+    }
+
+    if (!inputValues.message) {
+      newErrors.message = "Message is required";
+      valid = false;
+    }
+
+    setErrors(newErrors);
+    console.log(valid);
+    return valid;
+  };
+
   const [focusedInput, setFocusedInput] = useState<string | null>(null);
 
   const handleSubmit = async (event: any) => {
+    validate();
     event.preventDefault();
+    console.log("submit");
+
     // handle form submission logic here
   };
 
@@ -61,6 +109,7 @@ const ContactForm: React.FC = () => {
   const getInputClass = (id: string) => {
     return classNames("form-control text-box spacing-300", {
       filled: inputValues[id] && focusedInput !== id,
+      error: errors[id],
     });
   };
 
@@ -79,8 +128,9 @@ const ContactForm: React.FC = () => {
             <div className="row">
               <div className="col-sm-6">
                 <label htmlFor="firstName" className="form-label">
-                  First Name
+                  First Name <RequiredAsterisk />
                 </label>
+
                 <input
                   type="text"
                   className={getInputClass("firstName")}
@@ -90,10 +140,15 @@ const ContactForm: React.FC = () => {
                   onFocus={handleFocus}
                   onBlur={handleBlur}
                 />
+                {errors["firstName"] && (
+                  <div>
+                    <span>{errors["firstName"]}</span>
+                  </div>
+                )}
               </div>
               <div className="col-sm-6">
                 <label htmlFor="lastName" className="form-label">
-                  Last Name
+                  Last Name <RequiredAsterisk />
                 </label>
                 <input
                   type="text"
@@ -104,6 +159,11 @@ const ContactForm: React.FC = () => {
                   onFocus={handleFocus}
                   onBlur={handleBlur}
                 />
+                {errors["lastName"] && (
+                  <div>
+                    <span>{errors["lastName"]}</span>
+                  </div>
+                )}
               </div>
             </div>
           </div>
@@ -111,7 +171,7 @@ const ContactForm: React.FC = () => {
         <div className="row mb-3">
           <div className="col">
             <label htmlFor="email" className="form-label">
-              Email address
+              Email address <RequiredAsterisk />
             </label>
             <input
               type="email"
@@ -122,11 +182,18 @@ const ContactForm: React.FC = () => {
               onFocus={handleFocus}
               onBlur={handleBlur}
             />
+            {errors["email"] && (
+              <div>
+                <span>{errors["email"]}</span>
+              </div>
+            )}
           </div>
         </div>
         <div className="row mb-3">
           <div className="col">
-            <label className="form-label">Query Type</label>
+            <label className="form-label">
+              Query Type <RequiredAsterisk />
+            </label>
             <div className="row">
               <div className="col-sm-6">
                 <div className={getRadioClass("generalEnquiry")}>
@@ -165,17 +232,22 @@ const ContactForm: React.FC = () => {
         <div className="row mb-3">
           <div className="col">
             <label htmlFor="message" className="form-label">
-              Message
+              Message <RequiredAsterisk />
             </label>
             <textarea
               className={getInputClass("message")}
               id="message"
-              rows={4}
+              rows={6}
               value={inputValues.message}
               onChange={handleChange}
               onFocus={handleFocus}
               onBlur={handleBlur}
             ></textarea>
+            {errors["message"] && (
+              <div>
+                <span>{errors["message"]}</span>
+              </div>
+            )}
           </div>
         </div>
         <div className="row mb-3">
@@ -188,7 +260,7 @@ const ContactForm: React.FC = () => {
                 id="consent"
               />
               <label className="form-check-label consent" htmlFor="consent">
-                I consent to being contacted by the team
+                I consent to being contacted by the team <RequiredAsterisk />
               </label>
             </div>
           </div>
