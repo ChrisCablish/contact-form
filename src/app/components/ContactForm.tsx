@@ -107,9 +107,10 @@ const ContactForm: React.FC = () => {
   };
 
   const getInputClass = (id: string) => {
-    return classNames("form-control text-box spacing-300", {
+    return classNames("form-control text-box", {
       filled: inputValues[id] && focusedInput !== id,
       error: errors[id],
+      "spacing-300": !errors[id],
     });
   };
 
@@ -142,7 +143,7 @@ const ContactForm: React.FC = () => {
                 />
                 {errors["firstName"] && (
                   <div>
-                    <span>{errors["firstName"]}</span>
+                    <span className="errorMessage">{errors["firstName"]}</span>
                   </div>
                 )}
               </div>
@@ -161,7 +162,7 @@ const ContactForm: React.FC = () => {
                 />
                 {errors["lastName"] && (
                   <div>
-                    <span>{errors["lastName"]}</span>
+                    <span className="errorMessage">{errors["lastName"]}</span>
                   </div>
                 )}
               </div>
@@ -184,7 +185,7 @@ const ContactForm: React.FC = () => {
             />
             {errors["email"] && (
               <div>
-                <span>{errors["email"]}</span>
+                <span className="errorMessage">{errors["email"]}</span>
               </div>
             )}
           </div>
@@ -245,7 +246,7 @@ const ContactForm: React.FC = () => {
             ></textarea>
             {errors["message"] && (
               <div>
-                <span>{errors["message"]}</span>
+                <span className="errorMessage">{errors["message"]}</span>
               </div>
             )}
           </div>
